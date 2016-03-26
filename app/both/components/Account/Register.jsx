@@ -13,7 +13,9 @@ Register = React.createClass({
 			var accountInfo = {
 				email: email,
 				password: password,
-				profile: {}
+				profile: {
+					email: email
+				}
 			};
 			accountInfo.profile.role = this.accountType();
 			Accounts.createUser(accountInfo, function(er) {
