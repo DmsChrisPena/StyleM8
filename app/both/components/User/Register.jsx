@@ -1,4 +1,7 @@
 Register = React.createClass({
+	accountType() {
+		return this.props.type;
+	},
 	onSubmit(e) {
 		e.preventDefault();
 		var ele = $(e.target);
@@ -9,8 +12,10 @@ Register = React.createClass({
 		if(password === confirmPassword && password !== "" && confirmPassword !== "") {
 			var accountInfo = {
 				email: email,
-				password: password
+				password: password,
+				profile: {}
 			};
+			accountInfo.profile.role = this.accountType();
 			Accounts.createUser(accountInfo, function(er) {
 				if(er) {
 					Materialize.toast(er.reason, 4000);
@@ -24,6 +29,7 @@ Register = React.createClass({
 		}
 	},
 	render() {
+		console.log(this.accountType());
 		return (
 			<div className="row">
 				<h4 className="text-center">Register Account</h4>
