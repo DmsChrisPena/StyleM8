@@ -9,7 +9,6 @@ UserProfile = React.createClass({
 	    };
 	},
 	toggleProfile() {
-		this.setState({firstName: "something"});
 		var state;
 		if(this.state.profileState === "viewing") {
 			state = "editing";
@@ -18,12 +17,16 @@ UserProfile = React.createClass({
 		}
 		this.setState({profileState: state});
 	},
+	createFirstName() {
+		Meteor.users.update(User.id(), {$set: {"profile.firstName": "Chris"}});
+		this.setState({firstName: "Chris"});
+	},
 	render() {
 		var profile;
 		if(this.state.firstName === undefined) {
 			profile = (
 				<div>
-					<h3>Create Profile Now! By Clicking here <a onClick={this.toggleProfile}>EDIT PROFILE</a></h3>
+					<h3>Create Profile Now! By Clicking here <a onClick={this.createFirstName}>EDIT PROFILE</a></h3>
 				</div>
 				
 			);
