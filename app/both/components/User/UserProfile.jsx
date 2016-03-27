@@ -22,26 +22,22 @@ UserProfile = React.createClass({
 	},
 	getProfile() {
 		var profile;
-		if()
-			<UserProfileCreating />
-		);
 
-		profile = (
-			<UserProfileNotComplete createProfile={this.createProfile} />
-		);
+		if(!this.state.isCompleted) {
+			profile = <UserProfileNotComplete />;
+		}
 
-		profile = (
-			<UserProfileViewing state={this.state.profileState} email={this.state.email} role={this.state.role} />
-		);
-
-		profile = (
-			<UserProfileEditing />
-		);
+		if(this.state.profileState === "setupProfile") {
+			profile = <UserProfileCreating />;
+		} else if(this.state.profileState === "editing") {
+			profile = <UserProfileEditing />;
+		} else {
+			profile = <UserProfileViewing state={this.state.profileState} email={this.state.email} role={this.state.role} />;
+		}
 		return profile;
 	},
 	render() {
 		var profile = this.getProfile();
-		}
 		return (
 			<div className="row">
 				<button onClick={this.toggleProfile}>toggle {this.state.profileState}</button>
