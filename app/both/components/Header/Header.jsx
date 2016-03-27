@@ -23,7 +23,7 @@ Header = React.createClass({
     return (
       <nav style={navStyle}>
         <div className="nav-wrapper">
-          <a href="/" className="brand-logo">App Name Here</a>
+          <a href="/" className="brand-logo">Style M8</a>
           {navOptions}
         </div>
       </nav>
