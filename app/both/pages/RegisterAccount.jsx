@@ -14,7 +14,6 @@ RegisterAccount = React.createClass({
 	},
 	render() {
 		console.log(this.state);
-
 		return (
 			<div>
 				<a onClick={this.pickRole} id="user" className="waves-effect waves-light btn">User</a>
