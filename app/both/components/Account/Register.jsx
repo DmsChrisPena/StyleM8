@@ -14,10 +14,10 @@ Register = React.createClass({
 				email: email,
 				password: password,
 				profile: {
-					email: email
+					email: email,
+					role: this.accountType()
 				}
 			};
-			accountInfo.profile.role = this.accountType();
 			Accounts.createUser(accountInfo, function(er) {
 				if(er) {
 					Materialize.toast(er.reason, 4000);

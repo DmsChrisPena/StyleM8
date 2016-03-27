@@ -4,42 +4,43 @@ UserProfile = React.createClass({
 	        profileState: "viewing",
 	        role: User.get().profile.role,
 	        email: User.get().profile.email,
-	        firstName: User.get().profile.firstName,
-	        lastName: User.get().profile.lastName,
+	        isCompleted: User.get().profile.isCompleted
 	    };
 	},
 	toggleProfile() {
-		var state;
-		if(this.state.profileState === "viewing") {
-			state = "editing";
-		} else {
+		var isViewing = true;
+		if(isViewing) {
 			state = "viewing";
+		} else {
+			state = "editing";
 		}
 		this.setState({profileState: state});
 	},
-	createFirstName() {
+	createProfile() {
 		Meteor.users.update(User.id(), {$set: {"profile.firstName": "Chris"}});
-		this.setState({firstName: "Chris"});
+		this.setState({profileState: "setupProfile"});
+	},
+	getProfile() {
+		var profile;
+		if()
+			<UserProfileCreating />
+		);
+
+		profile = (
+			<UserProfileNotComplete createProfile={this.createProfile} />
+		);
+
+		profile = (
+			<UserProfileViewing state={this.state.profileState} email={this.state.email} role={this.state.role} />
+		);
+
+		profile = (
+			<UserProfileEditing />
+		);
+		return profile;
 	},
 	render() {
-		var profile;
-		if(this.state.firstName === undefined) {
-			profile = (
-				<div>
-					<h3>Create Profile Now! By Clicking here <a onClick={this.createFirstName}>EDIT PROFILE</a></h3>
-				</div>
-				
-			);
-		} else {
-			if(this.state.profileState === "viewing") {
-				profile = (
-					<UserProfileViewing state={this.state.profileState} email={this.state.email} role={this.state.role} />
-				);
-			} else {
-				profile = (
-					<UserProfileEditing />
-				);
-			}
+		var profile = this.getProfile();
 		}
 		return (
 			<div className="row">
